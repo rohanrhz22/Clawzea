@@ -1,13 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import "@copilotkit/react-ui/styles.css";
+import { CopilotKit } from "@copilotkit/react-core";
+import { CopilotPopup } from "@copilotkit/react-ui";
+import Navigation from "@/components/Navigation";
+import Hero from "@/components/Hero";
+import StatsBar from "@/components/StatsBar";
+import Services from "@/components/Services";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import CTASection from "@/components/CTASection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <CopilotKit runtimeUrl="/api/copilotkit">
+      <div className="min-h-screen">
+        <Navigation />
+        <Hero />
+        <StatsBar />
+        <Services />
+        <WhyChooseUs />
+        <CTASection />
+        <Footer />
+        
+        <CopilotPopup
+          labels={{
+            title: "Fetchy Assistant 🐾",
+            initial: "Hi! I'm your Fetchy assistant. How can I help you with pet care today?",
+          }}
+        />
       </div>
-    </div>
+    </CopilotKit>
   );
 };
 
