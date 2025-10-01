@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <CopilotKit runtimeUrl="/api/copilotkit">
+    <CopilotKit publicApiKey="ck_pub_f7153a4d79abdae0665e6a0ae94a2e58">
       <div className="min-h-screen">
         <Navigation />
         <Hero />
