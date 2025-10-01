@@ -48,7 +48,6 @@ const CTASection = () => {
     setIsSubmitting(true);
 
     try {
-      // Store in localStorage as backup
       const userData = {
         email,
         role: "pet_owner",
@@ -70,47 +69,40 @@ const CTASection = () => {
   };
 
   return (
-    <section id="join" className="py-20 bg-card">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative bg-gradient-to-br from-primary to-[hsl(var(--primary-dark))] rounded-[30px] p-8 sm:p-12 lg:p-16 overflow-hidden shadow-[var(--shadow-medium)]">
-          <div className="absolute top-0 right-0 text-9xl opacity-10 select-none pointer-events-none">
+    <section id="join" className="py-20 bg-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden text-center">
+          <div className="absolute top-0 right-0 text-9xl opacity-10 select-none pointer-events-none transform -rotate-12">
             🐕
           </div>
 
-          <div className="relative z-10 text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary-foreground mb-4">
-              Let's meet!
+          <div className="relative z-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
+              Happiness starts here
             </h2>
-            <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-              Be the first to know when we launch — sign up with your email today for exclusive updates, early access perks, and tips to keep your pet purring with joy!
+            <p className="text-lg sm:text-xl text-gray-800/90 mb-8 max-w-3xl mx-auto">
+              Be the first to know when we launch and the first to enjoy everything Fetchy offers. no spam, just love.
             </p>
 
-            <div className="max-w-md mx-auto">
-              <div className="bg-card rounded-2xl p-6 sm:p-8 shadow-[var(--shadow-medium)]">
-                <h3 className="text-2xl font-bold text-[hsl(var(--dark))] mb-2">
-                  🐕 For Pet Parents
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Get exclusive early access to trusted pet services
-                </p>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="rounded-full border-2 px-6 py-6 text-base"
-                  />
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[hsl(var(--dark))] text-white hover:bg-primary hover:text-primary-foreground font-semibold py-6 rounded-full transition-all hover:-translate-y-1"
-                  >
-                    {isSubmitting ? "Submitting..." : "Join as Pet Parent"}
-                  </Button>
-                </form>
-              </div>
+            <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-lg">
+              <p className="text-gray-600 mb-4">Get exclusive early access to trusted pet services</p>
+              <form onSubmit={handleSubmit} className="flex items-center">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="rounded-full border-2 px-6 py-3 text-base w-full mr-2"
+                />
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-gray-800 text-white hover:bg-primary hover:text-gray-800 font-semibold py-3 px-6 rounded-full transition-all"
+                >
+                  {isSubmitting ? "..." : "I'm in"}
+                </Button>
+              </form>
             </div>
           </div>
         </div>

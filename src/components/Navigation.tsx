@@ -13,34 +13,34 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-card shadow-[var(--shadow-soft)] z-50 animate-slide-down">
+    <nav className="fixed top-0 w-full bg-white shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection("hero")}>
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-2xl">
               🐾
             </div>
-            <span className="text-2xl font-extrabold text-[hsl(var(--dark))]">Fetchy</span>
+            <span className="text-2xl font-bold text-gray-800">Fetchy</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">
             <button
+              onClick={() => scrollToSection("aboutus")}
+              className="text-gray-600 font-medium hover:text-primary transition-colors"
+            >
+              About Us
+            </button>
+            <button
               onClick={() => scrollToSection("services")}
-              className="text-foreground font-medium hover:text-primary transition-colors"
+              className="text-gray-600 font-medium hover:text-primary transition-colors"
             >
               Services
             </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-foreground font-medium hover:text-primary transition-colors"
-            >
-              Contact
-            </button>
             <Button
               onClick={() => scrollToSection("join")}
-              className="bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-dark))] font-semibold px-6 rounded-full transition-all hover:-translate-y-0.5"
+              className="bg-primary text-gray-800 hover:bg-primary/90 font-semibold px-6 rounded-full transition-all hover:-translate-y-0.5"
             >
-              Join Now
+              Join Us
             </Button>
           </div>
 
@@ -60,25 +60,25 @@ const Navigation = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-card border-t border-border">
+        <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 py-4 space-y-3">
             <button
+              onClick={() => scrollToSection("aboutus")}
+              className="block w-full text-left px-3 py-2 rounded-md hover:bg-gray-100"
+            >
+              About Us
+            </button>
+            <button
               onClick={() => scrollToSection("services")}
-              className="block w-full text-left px-3 py-2 rounded-md hover:bg-muted"
+              className="block w-full text-left px-3 py-2 rounded-md hover:bg-gray-100"
             >
               Services
             </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="block w-full text-left px-3 py-2 rounded-md hover:bg-muted"
-            >
-              Contact
-            </button>
             <Button
               onClick={() => scrollToSection("join")}
-              className="w-full bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-dark))]"
+              className="w-full bg-primary text-gray-800 hover:bg-primary/90"
             >
-              Join Now
+              Join Us
             </Button>
           </div>
         </div>

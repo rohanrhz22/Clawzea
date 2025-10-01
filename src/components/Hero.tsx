@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-dog.jpg";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -10,46 +9,32 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="mt-16 pt-20 pb-16 bg-card overflow-hidden">
+    <section id="hero" className="mt-16 pt-20 pb-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-fade-in-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[hsl(var(--dark))] leading-tight mb-6">
-              Your pet,<br />
-              <span className="text-primary relative">our priority</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight mb-6">
+              Because every wag, purr, and cuddle<span className="text-primary"> matters.</span>
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground mb-8 leading-relaxed">
-              Connecting pet parents with trusted professionals for grooming, walking, boarding, training, and veterinary care.
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
+              Vet visits, vaccinations, spa days, and health records managed with love, all in one place.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button
                 onClick={() => scrollToSection("join")}
-                className="bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-dark))] font-semibold px-8 py-6 text-lg rounded-full shadow-[var(--shadow-primary)] hover:-translate-y-1 transition-all"
+                className="bg-primary text-gray-800 hover:bg-primary/90 font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:-translate-y-1 transition-all"
               >
-                Get Started
-              </Button>
-              <Button
-                onClick={() => scrollToSection("services")}
-                variant="outline"
-                className="border-2 border-[hsl(var(--dark))] text-[hsl(var(--dark))] hover:bg-[hsl(var(--dark))] hover:text-white font-semibold px-8 py-6 text-lg rounded-full hover:-translate-y-1 transition-all"
-              >
-                Learn More
+                Join Us
               </Button>
             </div>
           </div>
 
           <div className="relative animate-fade-in-right">
             <img
-              src={heroImage}
+              src="/img/happy_pets_and_parents.png"
               alt="Happy dog with owner"
-              className="w-full h-auto rounded-[30px] shadow-[var(--shadow-medium)]"
+              className="w-full h-auto rounded-[30px]"
             />
-            <div className="absolute top-5 -right-5 bg-secondary text-secondary-foreground px-5 py-3 rounded-full shadow-[var(--shadow-medium)] font-semibold flex items-center gap-2 animate-float hidden sm:flex">
-              <span>✓</span> Trusted by 1K+ pet owners
-            </div>
-            <div className="absolute bottom-8 -left-5 bg-accent text-accent-foreground px-5 py-3 rounded-full shadow-[var(--shadow-medium)] font-semibold flex items-center gap-2 animate-float [animation-delay:1s] hidden sm:flex">
-              <span>⭐</span> 4.9/5 Rating
-            </div>
           </div>
         </div>
       </div>

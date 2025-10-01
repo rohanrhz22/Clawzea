@@ -5,8 +5,8 @@ import { useCopilotReadable } from "@copilotkit/react-core";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
+import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
-import WhyChooseUs from "@/components/WhyChooseUs";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -181,8 +181,8 @@ const FetchyContent = () => {
       <Navigation />
       <Hero />
       <StatsBar />
+      <AboutUs />
       <Services />
-      <WhyChooseUs />
       <CTASection />
       <Footer />
       
