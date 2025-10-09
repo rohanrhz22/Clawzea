@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   const links = [
     { label: "About Us", href: "#aboutus" },
@@ -22,9 +24,11 @@ const Footer = () => {
         <p className="text-white/90">
           &copy; 2025 Clawzea. Made with ❤️ for pets and their humans.
         </p>
-        <p className="text-white/70 mt-2 text-sm">
-          Coming soon ...
-        </p>
+        <Link to="/service-providers">
+          <p className="text-white/70 mt-2 text-sm">
+            Coming soon ...
+          </p>
+        </Link>
       </div>
     </footer>
   );
