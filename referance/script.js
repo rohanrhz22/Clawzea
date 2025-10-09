@@ -134,9 +134,9 @@ document.getElementById('ownerForm').addEventListener('submit', async function(e
             timestamp: new Date().toISOString()
         };
         
-        let users = JSON.parse(localStorage.getItem('fetchyUsers') || '[]');
+        let users = JSON.parse(localStorage.getItem('ClawzeaUsers') || '[]');
         users.push(userData);
-        localStorage.setItem('fetchyUsers', JSON.stringify(users));
+        localStorage.setItem('ClawzeaUsers', JSON.stringify(users));
         
         // Trigger party popper animation
         triggerPartyPopper();
@@ -163,9 +163,9 @@ document.getElementById('ownerForm').addEventListener('submit', async function(e
             timestamp: new Date().toISOString()
         };
         
-        let users = JSON.parse(localStorage.getItem('fetchyUsers') || '[]');
+        let users = JSON.parse(localStorage.getItem('ClawzeaUsers') || '[]');
         users.push(userData);
-        localStorage.setItem('fetchyUsers', JSON.stringify(users));
+        localStorage.setItem('ClawzeaUsers', JSON.stringify(users));
         
         // Still show success to user
         triggerPartyPopper();

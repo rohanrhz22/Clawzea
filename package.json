@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run prepare-kb && vite",
+    "build": "npm run prepare-kb && vite build",
+    "prepare-kb": "node scripts/prepare-kb.cjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

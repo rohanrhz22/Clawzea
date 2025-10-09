@@ -42,7 +42,7 @@ const Services = () => {
           Everything they need, all in one place.
         </h2>
         <p className="text-lg text-gray-600/80">
-          An All in one super app! From vet visits and vaccinations to spa pampering and health tracking, Fetchy makes caring for your furry family simple, joyful, and full of love.
+          An All in one super app! From vet visits and vaccinations to spa pampering and health tracking, Clawzea makes caring for your furry family simple, joyful, and full of love.
         </p>
       </div>
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start max-w-7xl mx-auto mt-16 gap-8">

@@ -54,9 +54,9 @@ const ServiceProviders = () => {
                 timestamp: new Date().toISOString(),
             };
 
-            const users = JSON.parse(localStorage.getItem("fetchyUsers") || "[]");
+            const users = JSON.parse(localStorage.getItem("ClawzeaUsers") || "[]");
             users.push(userData);
-            localStorage.setItem("fetchyUsers", JSON.stringify(users));
+            localStorage.setItem("ClawzeaUsers", JSON.stringify(users));
 
             triggerConfetti();
             toast.success("🎉 Welcome aboard! We'll be in touch soon.");

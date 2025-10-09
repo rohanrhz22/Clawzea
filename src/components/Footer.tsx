@@ -20,7 +20,7 @@ const Footer = () => {
           ))}
         </div>
         <p className="text-white/90">
-          &copy; 2025 Fetchy. Made with ❤️ for pets and their humans.
+          &copy; 2025 Clawzea. Made with ❤️ for pets and their humans.
         </p>
         <p className="text-white/70 mt-2 text-sm">
           Coming soon ...

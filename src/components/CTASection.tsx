@@ -54,9 +54,9 @@ const CTASection = () => {
         timestamp: new Date().toISOString(),
       };
 
-      const users = JSON.parse(localStorage.getItem("fetchyUsers") || "[]");
+      const users = JSON.parse(localStorage.getItem("ClawzeaUsers") || "[]");
       users.push(userData);
-      localStorage.setItem("fetchyUsers", JSON.stringify(users));
+      localStorage.setItem("ClawzeaUsers", JSON.stringify(users));
 
       triggerConfetti();
       toast.success("🎉 Welcome! We'll notify you soon.");
@@ -81,7 +81,7 @@ const CTASection = () => {
               Happiness starts here
             </h2>
             <p className="text-lg sm:text-xl text-gray-800/90 mb-8 max-w-3xl mx-auto">
-              Be the first to know when we launch and the first to enjoy everything Fetchy offers. no spam, just love.
+              Be the first to know when we launch and the first to enjoy everything Clawzea offers. no spam, just love.
             </p>
 
             <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-lg">
