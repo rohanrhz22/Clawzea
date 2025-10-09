@@ -24,7 +24,7 @@ const Footer = () => {
         <p className="text-white/90">
           &copy; 2025 Clawzea. Made with ❤️ for pets and their humans.
         </p>
-        <Link to="/service-providers">
+        <Link to="">
           <p className="text-white/70 mt-2 text-sm">
             Coming soon ...
           </p>
