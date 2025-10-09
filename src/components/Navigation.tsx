@@ -20,7 +20,7 @@ const Navigation = () => {
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-2xl">
               🐾
             </div>
-            <span className="text-2xl font-bold text-gray-800">Fetchy</span>
+            <span className="text-2xl font-bold text-gray-800">Clawzea</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">
