@@ -2,44 +2,25 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { CopilotKit } from "@copilotkit/react-core";
+import { CopilotPopup } from "@copilotkit/react-ui";
+import { useCopilotReadable } from "@copilotkit/react-core";
 
-const ServiceProviders = () => {
+const ServiceProvidersContent = () => {
     const [email, setEmail] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [knowledge, setKnowledge] = useState([]);
 
-    const triggerConfetti = () => {
-        const duration = 3000;
-        const animationEnd = Date.now() + duration;
-        const colors = ["#FFD93D", "#6BCF7D", "#FF6B6B", "#2B2D42", "#FFBF00"];
+    useEffect(() => {
+        fetch('/kb-sp.json')
+            .then(response => response.json())
+            .then(data => setKnowledge(data));
+    }, []);
 
-        const frame = () => {
-            const timeLeft = animationEnd - Date.now();
-
-            if (timeLeft <= 0) return;
-
-            const particleCount = 3;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement("div");
-                particle.style.position = "fixed";
-                particle.style.left = Math.random() * window.innerWidth + "px";
-                particle.style.top = "-20px";
-                particle.style.width = "10px";
-                particle.style.height = "10px";
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.borderRadius = "50%";
-                particle.style.pointerEvents = "none";
-                particle.style.zIndex = "9999";
-                particle.style.animation = "confettiFall 3s linear forwards";
-                document.body.appendChild(particle);
-
-                setTimeout(() => particle.remove(), 3000);
-            }
-
-            requestAnimationFrame(frame);
-        };
-
-        frame();
-    };
+    useCopilotReadable({
+        description: "The service provider knowledge base",
+        value: JSON.stringify(knowledge),
+    });
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -58,7 +39,6 @@ const ServiceProviders = () => {
             users.push(userData);
             localStorage.setItem("ClawzeaUsers", JSON.stringify(users));
 
-            triggerConfetti();
             toast.success("🎉 Welcome aboard! We'll be in touch soon.");
             setEmail("");
         } catch (error) {
@@ -109,28 +89,6 @@ const ServiceProviders = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Stats Bar */}
-            {/* <section className="bg-primary py-8 px-8 -mt-0.5">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div className="animate-fadeInUp">
-                        <div className="text-4xl font-extrabold text-dark">1K+</div>
-                        <div className="text-base text-dark opacity-80">Pet Parents Waiting</div>
-                    </div>
-                    <div className="animate-fadeInUp">
-                        <div className="text-4xl font-extrabold text-dark">50+</div>
-                        <div className="text-base text-dark opacity-80">Cities Covered</div>
-                    </div>
-                    <div className="animate-fadeInUp">
-                        <div className="text-4xl font-extrabold text-dark">0%</div>
-                        <div className="text-base text-dark opacity-80">Upfront Costs</div>
-                    </div>
-                    <div className="animate-fadeInUp">
-                        <div className="text-4xl font-extrabold text-dark">24/7</div>
-                        <div className="text-base text-dark opacity-80">Support Available</div>
-                    </div>
-                </div>
-            </section> */}
 
             {/* About Us Section */}
             <section className="py-20 px-8 bg-white" id="aboutus">
@@ -262,10 +220,6 @@ const ServiceProviders = () => {
                 </div>
             </section>
 
-            {/* Party Popper Overlay */}
-            <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-50 hidden" id="partyPopper"></div>
-            <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl z-50 hidden animate-celebration-pop" id="celebrationEmoji"></div>
-
             {/* Footer */}
             <footer className="bg-[#2b2d42] text-white py-10 px-8 text-center">
                 <div className="max-w-7xl mx-auto">
@@ -278,7 +232,21 @@ const ServiceProviders = () => {
                     <p className="mt-2.5 opacity-80">Coming soon ...</p>
                 </div>
             </footer>
+            <CopilotPopup
+                labels={{
+                    title: "Service Provider Assistant 🐾",
+                    initial: "Hi! I'm your assistant. I can help you with questions about joining Clawzea, managing your business, and attracting new clients. What would you like to know?",
+                }}
+            />
         </div>
+    );
+};
+
+const ServiceProviders = () => {
+    return (
+        <CopilotKit publicApiKey="ck_pub_f7153a4d79abdae0665e6a0ae94a2e58">
+            <ServiceProvidersContent />
+        </CopilotKit>
     );
 };
 

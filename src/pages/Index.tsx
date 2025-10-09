@@ -194,7 +194,7 @@ const ClawzeaContent = () => {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <StatsBar />
+      {/* <StatsBar /> */}
       <AboutUs />
       <Services />
       <CTASection />
