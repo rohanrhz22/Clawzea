@@ -72,19 +72,18 @@ const CTASection = () => {
     <section id="join" className="py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative bg-gradient-to-br from-primary to-primary/80 rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden text-center">
-          <div className="absolute top-0 right-0 text-9xl opacity-10 select-none pointer-events-none transform -rotate-12">
-            🐕
+          <div className="absolute top-5 right-0 text-9xl opacity-10 select-none pointer-events-none transform -rotate-12">
+            happy pets!
           </div>
-
           <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
+            <h2 className="font-reddit text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
               Happiness starts here
             </h2>
-            <p className="text-lg sm:text-xl text-gray-800/90 mb-8 max-w-3xl mx-auto">
+            <p className="font-reddit text-lg sm:text-xl text-gray-800/90 mb-8 max-w-3xl mx-auto">
               Be the first to know when we launch and the first to enjoy everything Clawzea offers. no spam, just love.
             </p>
 
-            <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-lg">
+            <div className="font-reddit max-w-md mx-auto bg-white rounded-2xl p-6 shadow-lg">
               <p className="text-gray-600 mb-4">Get exclusive early access to trusted pet services</p>
               <form onSubmit={handleSubmit} className="flex items-center">
                 <Input
@@ -105,6 +104,12 @@ const CTASection = () => {
               </form>
             </div>
           </div>
+        </div>
+      </div>
+      {/* Proudly Canadian Strip */}
+      <div className="w-full bg-white-200 pt-20">
+        <div className="max-w-4xl mx-auto flex justify-center items-center">
+          <img src="/img/proudly_canadian.jpg" alt="Canada Flag" className="w-20 h-20 object-contain mr-2" />
         </div>
       </div>
     </section>

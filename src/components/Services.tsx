@@ -38,10 +38,10 @@ const Services = () => {
   return (
     <section id="services" className="py-20 px-8 bg-white">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
+        <h2 className="font-reddit text-4xl lg:text-5xl font-extrabold text-gray-800 mb-4">
           Everything they need, all in one place.
         </h2>
-        <p className="text-lg text-gray-600/80">
+        <p className="font-reddit text-lg text-gray-600/80">
           An All in one super app! From vet visits and vaccinations to spa pampering and health tracking, Clawzea makes caring for your furry family simple, joyful, and full of love.
         </p>
       </div>
@@ -49,7 +49,7 @@ const Services = () => {
         <div className="flex flex-col gap-12 flex-1 lg:items-end">
           {servicesLeft.map((service, index) => (
             <div key={index} className="flex flex-col-reverse lg:flex-row items-center gap-6 max-w-sm text-center lg:text-right">
-              <div className="service-text">
+              <div className="font-reddit service-text">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">{service.title}</h3>
                 <p className="text-sm text-gray-600/80">{service.description}</p>
               </div>

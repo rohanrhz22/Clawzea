@@ -9,7 +9,7 @@ const StatsBar = () => {
   return (
     <section className="bg-primary py-8 mt-[-2px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="font-reddit grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map((stat, index) => (
             <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
               <div className="text-3xl sm:text-4xl font-extrabold text-gray-800">

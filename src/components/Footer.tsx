@@ -21,11 +21,11 @@ const Footer = () => {
             </a>
           ))}
         </div>
-        <p className="text-white/90">
+        <p className="font-reddit text-white/90">
           &copy; 2025 Clawzea. Made with ❤️ for pets and their humans.
         </p>
         <Link to="">
-          <p className="text-white/70 mt-2 text-sm">
+          <p className="font-reddit text-white/70 mt-2 text-sm">
             Coming soon ...
           </p>
         </Link>

@@ -2,8 +2,8 @@ const AboutUs = () => {
   return (
     <section className="bg-white py-20" id="aboutus">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-6">Because They’re Family</h2>
-        <p className="text-lg text-gray-600 leading-relaxed">
+        <h2 className="font-reddit text-4xl font-extrabold text-gray-800 mb-6">Because They’re Family</h2>
+        <p className="font-reddit text-lg text-gray-600 leading-relaxed">
           At Clawzea, we know your pet isn’t just an animal they’re a part of your heart. Every wag, purr, playful zoom around the house, or quiet cuddle on the couch is a moment that matters.
           <br /><br />
           That’s why we built Clawzea. To give you a place where caring for your furry family member is simple, safe, and joyful. Track vet visits, vaccines, spa days, or keep all their health info in one place so you never miss a beat, and can spend more time making memories.
