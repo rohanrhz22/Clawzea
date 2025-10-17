@@ -1,18 +1,20 @@
 import "@copilotkit/react-ui/styles.css";
-import { CopilotKit } from "@copilotkit/react-core";
+import { CopilotKit, useCopilotAction } from "@copilotkit/react-core";
 import { CopilotPopup } from "@copilotkit/react-ui";
 import { useCopilotReadable } from "@copilotkit/react-core";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import StatsBar from "@/components/StatsBar";
 import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import { toast } from "sonner";
 
 const ClawzeaContent = () => {
   const [knowledge, setKnowledge] = useState([]);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     fetch('/kb.json')
@@ -25,170 +27,89 @@ const ClawzeaContent = () => {
     value: JSON.stringify(knowledge),
   });
 
-  // Provide comprehensive app information to Copilot
-  // useCopilotReadable({
-  //   description: "Complete information about Clawzea - the all-in-one pet care platform",
-  //   value: {
-  //     appName: "Clawzea",
-  //     tagline: "Your pet, our priority",
-  //     mission: "Connecting pet parents with trusted professionals for grooming, walking, boarding, training, and veterinary care.",
-  //     launchStatus: "Coming soon to Mumbai and major cities across India",
-  //     coverage: "50+ cities planned",
-  //     stats: {
-  //       verifiedProviders: "500+",
-  //       happyPetParents: "1000+",
-  //       citiesCovered: "50+",
-  //       support: "24/7 available"
-  //     }
-  //   }
-  // });
+  const triggerConfetti = () => {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const colors = ["#FFD93D", "#6BCF7D", "#FF6B6B", "#2B2D42", "#FFBF00"];
 
-  // // Provide detailed services information
-  // useCopilotReadable({
-  //   description: "All services offered by Clawzea with detailed descriptions",
-  //   value: {
-  //     services: [
-  //       {
-  //         name: "All-in-One Super App",
-  //         icon: "📱",
-  //         category: "Platform",
-  //         description: "Everything your pet needs in one place: grooming, vet care, walking, sitting, training, and shopping.",
-  //         benefits: [
-  //           "Centralized pet care management",
-  //           "Easy access to all services",
-  //           "Integrated shopping experience",
-  //           "One app for all pet needs"
-  //         ]
-  //       },
-  //       {
-  //         name: "Digital Health Passport",
-  //         icon: "📋",
-  //         category: "Health Management",
-  //         description: "Store vaccines, prescriptions, lab results, and share instantly with vets.",
-  //         benefits: [
-  //           "Secure storage of medical records",
-  //           "Easy sharing with veterinarians",
-  //           "Vaccine tracking and reminders",
-  //           "Prescription history management"
-  //         ]
-  //       },
-  //       {
-  //         name: "Vet Care Anytime",
-  //         icon: "🏥",
-  //         category: "Veterinary Services",
-  //         description: "Online consultations, offline bookings, and quick prescription refills.",
-  //         benefits: [
-  //           "Virtual vet consultations",
-  //           "Schedule in-person appointments",
-  //           "Quick prescription renewals",
-  //           "Expert veterinary advice"
-  //         ]
-  //       },
-  //       {
-  //         name: "Grooming Made Easy",
-  //         icon: "✂️",
-  //         category: "Grooming",
-  //         description: "Compare stations, check prices, and book grooming in seconds.",
-  //         benefits: [
-  //           "Compare multiple grooming stations",
-  //           "Transparent pricing",
-  //           "Fast booking process",
-  //           "Professional groomers only"
-  //         ]
-  //       },
-  //       {
-  //         name: "Boarding & Daycare",
-  //         icon: "🏠",
-  //         category: "Pet Care",
-  //         description: "Find safe, trusted spaces for your pet when you're away.",
-  //         benefits: [
-  //           "Verified and safe facilities",
-  //           "Flexible booking options",
-  //           "Peace of mind while traveling",
-  //           "24/7 pet monitoring available"
-  //         ]
-  //       },
-  //       {
-  //         name: "Walking & Sitting",
-  //         icon: "🚶",
-  //         category: "Daily Care",
-  //         description: "Book trusted walkers and sitters nearby, on-demand.",
-  //         benefits: [
-  //           "Background-checked walkers",
-  //           "On-demand availability",
-  //           "GPS tracking during walks",
-  //           "Flexible scheduling"
-  //         ]
-  //       }
-  //     ]
-  //   }
-  // });
+    const frame = () => {
+      const timeLeft = animationEnd - Date.now();
 
-  // // Provide why choose us information
-  // useCopilotReadable({
-  //   description: "Key features and benefits of choosing Clawzea",
-  //   value: {
-  //     features: [
-  //       {
-  //         name: "Trusted Professionals",
-  //         icon: "🛡️",
-  //         description: "All service providers are verified and background-checked for your peace of mind.",
-  //         details: "We conduct thorough verification and background checks on all our service providers to ensure your pet's safety."
-  //       },
-  //       {
-  //         name: "Best Prices",
-  //         icon: "💰",
-  //         description: "Compare prices from multiple providers and choose what fits your budget.",
-  //         details: "Our platform allows you to compare prices across different service providers, ensuring you get the best value for your money."
-  //       },
-  //       {
-  //         name: "Easy Booking",
-  //         icon: "📱",
-  //         description: "Book services in just a few taps with our user-friendly mobile app.",
-  //         details: "Our intuitive interface makes booking any pet service quick and hassle-free, saving you time and effort."
-  //       },
-  //       {
-  //         name: "Top Rated",
-  //         icon: "⭐",
-  //         description: "Join thousands of satisfied pet parents who trust us with their furry friends.",
-  //         details: "With a 4.9/5 rating and over 1000 happy pet parents, we're the trusted choice for pet care."
-  //       }
-  //     ],
-  //     rating: "4.9/5",
-  //     trustIndicators: [
-  //       "1000+ trusted by pet owners",
-  //       "Verified service providers",
-  //       "Background checked professionals",
-  //       "24/7 customer support"
-  //     ]
-  //   }
-  // });
+      if (timeLeft <= 0) return;
 
-  // // Provide instructions for the Copilot
-  // useCopilotReadable({
-  //   description: "Instructions for the Clawzea AI Assistant on how to help users",
-  //   value: {
-  //     role: "You are the Clawzea AI Assistant, an expert on all pet care services offered by Clawzea.",
-  //     guidelines: [
-  //       "Be friendly, helpful, and enthusiastic about pet care",
-  //       "When users ask about services, provide detailed explanations with benefits",
-  //       "Help users understand how Clawzea can solve their pet care needs",
-  //       "Encourage users to sign up for early access",
-  //       "If asked about pricing, explain that users can compare prices across providers",
-  //       "Always emphasize safety, trust, and convenience",
-  //       "Use pet-related emojis to keep conversations warm and friendly 🐾"
-  //     ],
-  //     commonQuestions: [
-  //       "What services does Clawzea offer?",
-  //       "How does the Digital Health Passport work?",
-  //       "Can I book a vet appointment?",
-  //       "How much do grooming services cost?",
-  //       "Are the service providers verified?",
-  //       "When will Clawzea launch?",
-  //       "How do I sign up for early access?"
-  //     ]
-  //   }
-  // });
+      const particleCount = 3;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.style.position = "fixed";
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.top = "-20px";
+        particle.style.width = "10px";
+        particle.style.height = "10px";
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.borderRadius = "50%";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "9999";
+        particle.style.animation = "confettiFall 3s linear forwards";
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 3000);
+      }
+
+      requestAnimationFrame(frame);
+    };
+
+    frame();
+  };
+
+  const signUp = async (email: string) => {
+    setIsSubmitting(true);
+
+    // IMPORTANT: Replace this with your actual Google Form URL and entry ID
+    const GOOGLE_FORM_URL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSctyC2L1co7pCAMjJ1uOwbKQ33_x4-HnsQKyXzBZiPaAqdGgw/formResponse";
+    const EMAIL_ENTRY_ID = "entry.1884265043";
+
+    const formData = new FormData();
+    formData.append(EMAIL_ENTRY_ID, email);
+
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      triggerConfetti();
+      toast.success(`🎉 Welcome, ${email}! We'll notify you soon.`);
+      setEmail(email);
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setTimeout(() => setIsSubmitting(false), 1000);
+    }
+  };
+
+  useCopilotAction({
+    name: "signUpForEarlyAccess",
+    description: "Signs up a user for early access to Clawzea.",
+    parameters: [
+      {
+        name: "email",
+        type: "string",
+        description: "The user's email address.",
+        required: true,
+      },
+    ],
+    handler: async ({ email }) => {
+      await signUp(email);
+    },
+  });
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    await signUp(email);
+  };
 
   return (
     <div className="min-h-screen">
@@ -197,7 +118,12 @@ const ClawzeaContent = () => {
       {/* <StatsBar /> */}
       <AboutUs />
       <Services />
-      <CTASection />
+      <CTASection
+        email={email}
+        setEmail={setEmail}
+        isSubmitting={isSubmitting}
+        handleSubmit={handleSubmit}
+      />
       <Footer />
       
       <CopilotPopup

@@ -2,6 +2,7 @@ import { useState, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { useCopilotAction } from "@copilotkit/react-core";
 
 const CTASection = () => {
   const [email, setEmail] = useState("");
@@ -41,31 +42,54 @@ const CTASection = () => {
     frame();
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
+  const signUp = async (email: string) => {
     setIsSubmitting(true);
 
-    try {
-      const userData = {
-        email,
-        role: "pet_owner",
-        timestamp: new Date().toISOString(),
-      };
+    // IMPORTANT: Replace this with your actual Google Form URL and entry ID
+    const GOOGLE_FORM_URL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSctyC2L1co7pCAMjJ1uOwbKQ33_x4-HnsQKyXzBZiPaAqdGgw/formResponse";
+    const EMAIL_ENTRY_ID = "entry.1884265043";
 
-      const users = JSON.parse(localStorage.getItem("ClawzeaUsers") || "[]");
-      users.push(userData);
-      localStorage.setItem("ClawzeaUsers", JSON.stringify(users));
+    const formData = new FormData();
+    formData.append(EMAIL_ENTRY_ID, email);
+
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
 
       triggerConfetti();
-      toast.success("🎉 Welcome! We'll notify you soon.");
-      setEmail("");
+      toast.success(`🎉 Welcome, ${email}! We'll notify you soon.`);
+      setEmail(email);
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setTimeout(() => setIsSubmitting(false), 1000);
     }
+  };
+
+  useCopilotAction({
+    name: "signUpForEarlyAccess",
+    description: "Signs up a user for early access to Clawzea.",
+    parameters: [
+      {
+        name: "email",
+        type: "string",
+        description: "The user's email address.",
+        required: true,
+      },
+    ],
+    handler: async ({ email }) => {
+      await signUp(email);
+    },
+  });
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    await signUp(email);
   };
 
   return (

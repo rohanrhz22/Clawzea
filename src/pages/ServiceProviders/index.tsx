@@ -2,7 +2,7 @@ import React, { useEffect, useState, FormEvent } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { CopilotKit } from "@copilotkit/react-core";
+import { CopilotKit, useCopilotAction } from "@copilotkit/react-core";
 import { CopilotPopup } from "@copilotkit/react-ui";
 import { useCopilotReadable } from "@copilotkit/react-core";
 
@@ -22,30 +22,88 @@ const ServiceProvidersContent = () => {
         value: JSON.stringify(knowledge),
     });
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-        if (!email) return;
+    const triggerConfetti = () => {
+        const duration = 3000;
+        const animationEnd = Date.now() + duration;
+        const colors = ["#FFD93D", "#6BCF7D", "#FF6B6B", "#2B2D42", "#FFBF00"];
 
+        const frame = () => {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) return;
+
+            const particleCount = 3;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.style.position = "fixed";
+                particle.style.left = Math.random() * window.innerWidth + "px";
+                particle.style.top = "-20px";
+                particle.style.width = "10px";
+                particle.style.height = "10px";
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = "50%";
+                particle.style.pointerEvents = "none";
+                particle.style.zIndex = "9999";
+                particle.style.animation = "confettiFall 3s linear forwards";
+                document.body.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 3000);
+            }
+
+            requestAnimationFrame(frame);
+        };
+
+        frame();
+    };
+
+    const signUp = async (email: string) => {
         setIsSubmitting(true);
 
+        // IMPORTANT: Replace this with your actual Google Form URL and entry ID
+        const GOOGLE_FORM_URL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSctyC2L1co7pCAMjJ1uOwbKQ33_x4-HnsQKyXzBZiPaAqdGgw/formResponse";
+        const EMAIL_ENTRY_ID = "entry.1884265043";
+
+        const formData = new FormData();
+        formData.append(EMAIL_ENTRY_ID, email);
+
         try {
-            const userData = {
-                email,
-                role: "service_provider",
-                timestamp: new Date().toISOString(),
-            };
+            await fetch(GOOGLE_FORM_URL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData,
+            });
 
-            const users = JSON.parse(localStorage.getItem("ClawzeaUsers") || "[]");
-            users.push(userData);
-            localStorage.setItem("ClawzeaUsers", JSON.stringify(users));
-
-            toast.success("🎉 Welcome aboard! We'll be in touch soon.");
-            setEmail("");
+            toast.success(`🎉 Welcome aboard, ${email}! We'll be in touch soon.`);
+            setEmail(email);
+            triggerConfetti();
         } catch (error) {
             toast.error("Something went wrong. Please try again.");
         } finally {
             setTimeout(() => setIsSubmitting(false), 1000);
         }
+    };
+
+    useCopilotAction({
+        name: "signUpAsServiceProvider",
+        description: "Signs up a user as a service provider for Clawzea.",
+        parameters: [
+            {
+                name: "email",
+                type: "string",
+                description: "The service provider's email address.",
+                required: true,
+            },
+        ],
+        handler: async ({ email }) => {
+            await signUp(email);
+        },
+    });
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+        await signUp(email);
     };
 
 
@@ -266,3 +324,12 @@ const ServiceProviders = () => {
 };
 
 export default ServiceProviders;
+
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+`;
+document.head.appendChild(style);
