@@ -59,25 +59,28 @@ const ServiceProvidersContent = () => {
     const signUp = async (email: string) => {
         setIsSubmitting(true);
 
-        // IMPORTANT: Replace this with your actual Google Form URL and entry ID
+        // Google Form submission endpoint
         const GOOGLE_FORM_URL =
-        "https://docs.google.com/forms/d/e/1FAIpQLSctyC2L1co7pCAMjJ1uOwbKQ33_x4-HnsQKyXzBZiPaAqdGgw/formResponse";
-        const EMAIL_ENTRY_ID = "entry.1884265043";
+            "https://docs.google.com/forms/d/e/1FAIpQLSdR6wRkgy9v5NMtxkbPBAXscKJocJtcR67xlJzY3OVAlAPogQ/formResponse";
+        const EMAIL_ENTRY_ID = 'entry.1774101018';
 
         const formData = new FormData();
         formData.append(EMAIL_ENTRY_ID, email);
 
         try {
+            // Using no-cors mode - we won't get a response, but the form will submit
             await fetch(GOOGLE_FORM_URL, {
                 method: "POST",
                 mode: "no-cors",
                 body: formData,
             });
 
+            // With no-cors, we assume success if no error is thrown
             toast.success(`🎉 Welcome aboard, ${email}! We'll be in touch soon.`);
-            setEmail(email);
+            setEmail("");  // Clear the input field
             triggerConfetti();
         } catch (error) {
+            console.error("Form submission error:", error);
             toast.error("Something went wrong. Please try again.");
         } finally {
             setTimeout(() => setIsSubmitting(false), 1000);

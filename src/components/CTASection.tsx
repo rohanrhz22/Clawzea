@@ -46,9 +46,8 @@ const CTASection = () => {
     setIsSubmitting(true);
 
     // IMPORTANT: Replace this with your actual Google Form URL and entry ID
-    const GOOGLE_FORM_URL =
-      "https://docs.google.com/forms/d/e/1FAIpQLSctyC2L1co7pCAMjJ1uOwbKQ33_x4-HnsQKyXzBZiPaAqdGgw/formResponse";
-    const EMAIL_ENTRY_ID = "entry.1884265043";
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSePg-iM2spZiQpGw7wZpLNnhsVXyKfHCcBjLLuhg0M085HAhg/formResponse";
+    const EMAIL_ENTRY_ID = 'entry.1774101018';
 
     const formData = new FormData();
     formData.append(EMAIL_ENTRY_ID, email);
