@@ -150,6 +150,11 @@ const ServiceProvidersContent = () => {
                         </div>
                     </div>
                     <div className="relative animate-fadeInRight z-0">
+            <img
+              src="/img/yellow-heart.png"
+              alt="Background heart"
+              className="absolute top-1/2 left-1/2 w-[700px] max-w-none h-auto -translate-x-1/2 -translate-y-1/2 z-0 rotate-[15deg]"
+            />
                         <img src="/img/service-providers/happy_pets_and_parents.png" alt="Happy dog with owner" className="relative block z-10 w-full h-auto" />
                     </div>
                 </div>
