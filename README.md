@@ -1,73 +1,33 @@
-# Welcome to your Lovable project
+# Clawzea Web App
 
-## Project info
+This repository contains the Clawzea marketing site and web experience for helping pet parents connect with trusted care providers.
 
-**URL**: https://lovable.dev/projects/d35c67b7-b798-407c-a1e3-a9b7b9f5722a
+## Getting Started
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/d35c67b7-b798-407c-a1e3-a9b7b9f5722a) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+You will need a current LTS release of Node.js (v18+) and npm. We recommend [installing via nvm](https://github.com/nvm-sh/nvm#installing-and-updating) so you can match the versions used in production.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+git clone <REPO_URL>
+cd Clawzea
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The development server runs on `http://localhost:5173` by default. Vite provides hot-module reloading, so edits in `src/` appear immediately.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Tooling
 
-**Use GitHub Codespaces**
+- Vite + React + TypeScript
+- Tailwind CSS and shadcn/ui for styling and components
+- ESLint and TypeScript for linting and type-checking
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Useful scripts:
 
-## What technologies are used for this project?
+- `npm run dev` – start the local dev server
+- `npm run build` – create a production build
+- `npm run preview` – serve the production build locally
+- `npm run lint` – run project linting
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d35c67b7-b798-407c-a1e3-a9b7b9f5722a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The app builds to the `dist/` directory via `npm run build`. Deploy the contents of `dist/` to your preferred static hosting platform (e.g. Netlify, Vercel, Cloudflare Pages, or S3/CloudFront). Update DNS and CDN settings as needed for the `clawzea.com` domain or any custom subdomain you manage.
