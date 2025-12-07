@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
@@ -38,12 +39,13 @@ const Navigation = () => {
             >
               Services
             </button>
-            <Button
-              onClick={() => scrollToSection("join")}
-              className="bg-primary text-gray-800 hover:bg-primary/90 font-semibold px-6 rounded-full transition-all hover:-translate-y-0.5"
-            >
-              Join Us
-            </Button>
+            <Link to="/signup">
+              <Button
+                className="bg-primary text-gray-800 hover:bg-primary/90 font-semibold px-6 rounded-full transition-all hover:-translate-y-0.5"
+              >
+                Signup
+              </Button>
+            </Link>
           </div>
 
           <button
@@ -76,12 +78,13 @@ const Navigation = () => {
             >
               Services
             </button>
-            <Button
-              onClick={() => scrollToSection("join")}
-              className="font-reddit w-full bg-primary text-gray-800 hover:bg-primary/90"
-            >
-              Join Us
-            </Button>
+            <Link to="/signup" onClick={() => setIsOpen(false)}>
+              <Button
+                className="font-reddit w-full bg-primary text-gray-800 hover:bg-primary/90"
+              >
+                Signup
+              </Button>
+            </Link>
           </div>
         </div>
       )}
