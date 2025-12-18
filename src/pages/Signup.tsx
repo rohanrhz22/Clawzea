@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Signup = () => {
+  const navigator = useNavigate();
+
   const handleGoogleSignup = () => {
-    // TODO: Implement Google OAuth
-    console.log("Google signup clicked");
+    // Simulate successful Google OAuth
+    console.log("Google signup clicked - redirecting to dashboard");
+    navigator("/dashboard");
   };
 
   return (
@@ -15,7 +18,7 @@ const Signup = () => {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center gap-1 cursor-pointer">
               <img
-                src="/img/logobasenobg.png"
+                src="/img/logobasenobg.png" 
                 alt="Clawzea Logo"
                 className="w-10 h-10 object-contain rounded-xl"
               />
