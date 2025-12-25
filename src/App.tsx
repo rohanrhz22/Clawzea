@@ -10,6 +10,8 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 
+import AnalyticsTracker from "./components/AnalyticsTracker";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -17,7 +19,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter> 
+      <BrowserRouter>
+        <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/partners" element={<ServiceProviders />} />
