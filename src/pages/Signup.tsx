@@ -1,13 +1,48 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { auth, db } from "@/lib/firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const Signup = () => {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
-  const handleGoogleSignup = () => {
-    // Simulate successful Google OAuth
-    console.log("Google signup clicked - redirecting to dashboard");
-    navigator("/dashboard");
+  const handleGoogleSignup = async () => {
+    try {
+      setError(null);
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      if (user) {
+        // Check if user exists in Firestore
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+          // Create new user document
+          await setDoc(userRef, {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            createdAt: new Date(),
+          });
+        }
+
+        // Navigation to dashboard
+        navigate('/dashboard');
+      }
+    } catch (err: any) {
+      console.error("Error signing in with Google", err);
+      if (err.code === 'auth/operation-not-allowed') {
+        setError("Google Sign-In is not enabled. Please enable it in the Firebase Console.");
+      } else {
+        setError("An error occurred during sign up. Please try again.");
+      }
+    }
   };
 
   return (
@@ -18,7 +53,7 @@ const Signup = () => {
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center gap-1 cursor-pointer">
               <img
-                src="/img/logobasenobg.png" 
+                src="/img/logobasenobg.png"
                 alt="Clawzea Logo"
                 className="w-10 h-10 object-contain rounded-xl"
               />
@@ -52,6 +87,13 @@ const Signup = () => {
               </p>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm text-center font-reddit">
+                {error}
+              </div>
+            )}
+
             {/* Divider */}
             <div className="relative mb-8">
               <div className="absolute inset-0 flex items-center">
@@ -68,8 +110,7 @@ const Signup = () => {
             <Button
               onClick={handleGoogleSignup}
               variant="outline"
-              className="w-full h-12 rounded-full border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all duration-300 font-reddit font-medium text-gray-700 flex items-center justify-center gap-3"
-            >
+className="w-full h-12 rounded-full border-2 border-gray-200 hover:border-primary hover:bg-primary/5 hover:text-yellow-500 transition-all duration-300 font-reddit font-medium text-gray-700 flex items-center justify-center gap-3"            >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
